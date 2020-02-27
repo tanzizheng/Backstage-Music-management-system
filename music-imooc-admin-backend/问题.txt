@@ -1,0 +1,20 @@
+1.npm install koa2-cors//安装koa跨域解决方案
+2.POST请求参数在请求体里面,需要npm install koa-body插件解析,而GET请求只需要ctx.request.query得到参数
+3.图片上传时用到multipart/form-data于post方法的不同之处在于请求头和请求体
+------const params = {
+      method: 'POST',
+      // 1.3;Body 部分格式为 multipart/form-data
+      headers: {
+        'Content-Type':'multipart/form-data'
+      },
+      uri: info.url,
+      // form表单
+      formData: {
+        key: path,
+        Signature: info.authorization,
+        'x-cos-security-token': info.token,
+        'x-cos-meta-fileid': info.cos_file_id,
+        file: fs.createReadStream(file.path)//读取二进制内容
+      },
+      json: true
+    }-----------------------------------------------
